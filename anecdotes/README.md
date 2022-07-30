@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Exercises
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1.1 - 1.5: [courseinfo](https://github.com/jokerinya/fsopen-part1/tree/main/courseinfo)
 
-## Available Scripts
+## 1.6 - 1.11: [unicafe](https://github.com/jokerinya/fsopen-part1/tree/main/unicafe)
 
-In the project directory, you can run:
+## 1.12\*: anecdotes step1
 
-### `npm start`
+The world of software engineering is filled with anecdotes that distill timeless truths from our field into short one-liners.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Expand the following application by adding a button that can be clicked to display a random anecdote from the field of software engineering:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```js
+import { useState } from 'react';
 
-### `npm test`
+const App = () => {
+    const anecdotes = [
+        'If it hurts, do it more often.',
+        'Adding manpower to a late software project makes it later!',
+        'The first 90 percent of the code accounts for the first 10 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
+        'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
+        'Premature optimization is the root of all evil.',
+        'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
+        'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.'
+    ];
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    const [selected, setSelected] = useState(0);
 
-### `npm run build`
+    return <div>{anecdotes[selected]}</div>;
+};
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+export default App;
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Content of the file _index.js_ is same as in previous exercises.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Find out how to generate random numbers in JavaScript, eg. via search engine or on Mozilla Developer Network. Remember that you can test generating random numbers e.g. straight in the console of your
+browser.
 
-### `npm run eject`
+Your finished application could look something like this:  
+![Result](./readmeimg/18a.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**WARNING** `create-react-app` will automatically turn your project into a git-repository unless you create your application inside of an existing git repository. **Most likely you do not want each of
+your projects to be a separate repository**, so simply run the `rm -rf .git` command at the root of your application.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 1.13\*: anecdotes step2
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Expand your application so that you can vote for the displayed anecdote.  
+![Displayed Anecdote](./readmeimg/19a.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**NB** store the votes of each anecdote into an array or object in the component's state. Remember that the correct way of updating state stored in complex data structures like objects and arrays is
+to make a copy of the state.
 
-## Learn More
+You can create a copy of an object like this:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+const points = { 0: 1, 1: 3, 2: 4, 3: 2 };
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const copy = { ...points };
+// increment the property 2 value by one
+copy[2] += 1;
+```
 
-### Code Splitting
+OR a copy of an array like this:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```js
+const points = [1, 4, 6, 3];
 
-### Analyzing the Bundle Size
+const copy = [...points];
+// increment the value in position 2 by one
+copy[2] += 1;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Using an array might be the simpler choice in this case. Searching the Internet will provide you with lots of hints on how to create a
+[zero-filled array of a desired length](https://stackoverflow.com/questions/20222501/how-to-create-a-zero-filled-javascript-array-of-arbitrary-length/22209781).
 
-### Making a Progressive Web App
+## 1.14\*: anecdotes step3
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Now implement the final version of the application that displays the anecdote with the largest number of votes:  
+![Final Version](./readmeimg/20a.png)
 
-### Advanced Configuration
+If multiple anecdotes are tied for first place it is sufficient to just show one of them.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This was the last exercise for this part of the course and it's time to push your code to GitHub and mark all of your finished exercises to the exercise
+[submission system](https://studies.cs.helsinki.fi/stats/courses/fullstackopen).
